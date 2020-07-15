@@ -19,9 +19,9 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/Orientation',
-    name: 'Orientation',
-    component: ()=>import('../views/Orientation.vue')
+    path: '/Zjxx',
+    name: 'Zjxx',
+    component: ()=>import('../views/Zjxx.vue')
   },
   {
     path: '/Captcha',

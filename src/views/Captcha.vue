@@ -1,112 +1,54 @@
 <template>
-  <div class="app-container">
-    <el-dropdown>
-      <span class="el-dropdown-link">test</span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>english</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <!--工具栏-->
-    <p>{{ $t('message.hello') }} {{ $t('message.world') }}</p>
-    <div class="head-container">
-      <!--如果想在工具栏加入更多按钮，可以使用插槽方式， slot = 'left' or 'right'-->
-      <!-- <crudOperation :permission="permission" /> -->
-      <!--表单组件-->
-      <el-dialog :close-on-click-modal="false" width="500px">
-        <el-form ref="form" :rules="rules" size="small" label-width="80px">
-          <el-form-item label="验证码类型" prop="type">
-            <el-radio
-              v-for="item in dict.captcha_type"
-              :key="item.id"
-              :label="item.value"
-              >{{ item.label }}
-            </el-radio>
-          </el-form-item>
-          <el-form-item label="字体名字">
-            <el-radio
-              v-for="item in dict.font_name"
-              :key="item.id"
-              :label="item.value"
-              >{{ item.label }}
-            </el-radio>
-          </el-form-item>
-          <el-form-item label="字体风格">
-            <el-radio
-              v-for="item in dict.captcha_fontstyle"
-              :key="item.id"
-              :label="item.value"
-              >{{ item.label }}
-            </el-radio>
-          </el-form-item>
-          <el-form-item label="字体大小"> </el-form-item>
-          <el-form-item label="宽度"> </el-form-item>
-          <el-form-item label="高度"> </el-form-item>
-          <el-form-item label="位数"> </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button type="primary">确认</el-button>
-        </div>
-      </el-dialog>
-      <!--表格渲染-->
-      <el-table ref="table" size="small" style="width: 100%;">
-        <el-table-column type="selection" width="55" />
-        <el-table-column prop="type" label="验证码类型">
-          <template slot-scope="scope">
-            {{ dict.label.captcha_type[scope.row.type] }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="fontName" label="字体名字">
-          <template slot-scope="scope">
-            {{ dict.label.font_name[scope.row.fontName] }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="fontStyle" label="字体风格">
-          <template slot-scope="scope">
-            {{ dict.label.captcha_fontstyle[scope.row.fontStyle] }}
-          </template>
-        </el-table-column>
-        <el-table-column prop="fontSize" label="字体大小" />
-        <el-table-column prop="width" label="宽度" />
-        <el-table-column prop="height" label="高度" />
-        <el-table-column prop="len" label="位数" />
-        <el-table-column label="操作" width="150px" align="center">
-          <template> </template>
-        </el-table-column>
-      </el-table>
-      <!--分页组件-->
-      <!-- <pagination /> -->
-    </div>
+   <div class="block">
+    <el-carousel trigger="click" height="240px">
+      <el-carousel-item v-for="item in images" :key="item.src">
+        <img class="image-scroll" :src="item.src" :alt="item.title" :title="item.title">
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Captcha',
   data() {
     return {
-      dict: ['captcha_type', 'font_name', 'captcha_fontstyle'],
-      permission: {
-        add: ['admin', 'captcha:add'],
-        edit: ['admin', 'captcha:edit'],
-        del: ['admin', 'captcha:del'],
-      },
-      rules: {
-        id: [{ required: true, message: 'id不能为空', trigger: 'blur' }],
-        type: [
-          { required: true, message: '验证码类型不能为空', trigger: 'blur' },
-        ],
-      },
+      images: [
+        {src:'https://www.bing.com/th?id=OHR.WinchesterCrypt_ZH-CN1683778044_320x240.jpg&rf=LaDigue_320x240.jpg&pid=HpEdgeAn',
+        title:'被洪水淹没的温彻斯特大教堂地下室，英国汉普郡'},
+        {src:'https://www.bing.com/th?id=OHR.WaterRipplesVideo_ZH-CN8790763092_320x240.jpg&rf=LaDigue_320x240.jpg&pid=hp',
+        title:'埃热泽尔斯湖面上的波纹，拉脱维亚拉特加尔地区'},
+        {src:'https://www.bing.com/th?id=OHR.SunnyRainforest_ZH-CN1412617420_320x240.jpg&rf=LaDigue_320x240.jpg&pid=hp',
+        title:'奥林匹克国家公园中的可可西里雨林，华盛顿州'},
+        {src:'https://www.bing.com/th?id=OHR.NorfolkPups_ZH-CN0794024596_320x240.jpg&rf=LaDigue_320x240.jpg&pid=hp',
+        title:'在沙滩上休息的灰海豹幼崽，英国Blakeney Point自然保护区'}        
+      ]
     }
   },
-  methods: {},
 }
 </script>
 <style scoped>
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409eff;
+.el-carousel{
+  width: 400px;
 }
-.el-icon-arrow-down {
-  font-size: 12px;
-}
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+    text-align: center;
+  }
+  .image-scroll{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+     background-color: #99a9bf;
+  }
+  
+  .el-carousel__item:nth-child(2n+1) {
+     background-color: #d3dce6;
+  }
 </style>
