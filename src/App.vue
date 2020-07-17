@@ -5,13 +5,15 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/Zjxx">Orientation</router-link> |
       <router-link to="/Captcha">Captcha</router-link>
-      <el-button type="primary" icon="el-icon-search">搜索</el-button>
     </div>
     <router-view />
   </div>
 </template>
 
 <style>
+#app{
+  text-align: center;
+}
 #nav {
   padding: 30px;
 }

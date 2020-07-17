@@ -55,7 +55,8 @@ export default {
 
 <style lang="scss">
 .date-info {
-  float: right;
+  // float: right;
+  padding-top: 30px;
   padding-right: 30px;
   & > * {
     display: inline-block;

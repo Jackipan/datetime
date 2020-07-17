@@ -28,6 +28,8 @@ export default {
 </script>
 <style scoped>
 .el-carousel{
+  padding-top: 30px;
+  margin: 0 auto;
   width: 400px;
 }
 .el-carousel__item h3 {
