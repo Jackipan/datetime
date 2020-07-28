@@ -27,6 +27,21 @@ Vue.use(VueRouter)
     path: '/Captcha',
     name: 'Captcha',
     component: ()=>import('../views/Captcha.vue')
+  },
+  {
+    path: '/upload',
+    name: 'Upload',
+    component: ()=>import('../views/Upload.vue')
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: ()=>import('../views/Chat.vue')
+  },
+  {
+    path: '/imgCut',
+    name: 'ImgCut',
+    component: ()=>import('../views/ImgCut.vue')
   }
 ]
 

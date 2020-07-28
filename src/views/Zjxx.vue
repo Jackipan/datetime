@@ -346,8 +346,8 @@ export default {
         .post('/user', this.addForm)
         .then((response) => {
           console.log(response)
-          this.dialogVisible = false
-          this.addForm = {}
+          // this.dialogVisible = false
+          // this.addForm = {}
         })
         .catch((err) => {
           console.log(err)

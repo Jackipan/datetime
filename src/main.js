@@ -40,6 +40,3 @@ new Vue({
   i18n,
   render: (h) => h(App),
 }).$mount('#app')
-
-
-console.log(process.env.VUE_APP_URL);

@@ -4,7 +4,7 @@ const port = 8080
 module.exports = {
   devServer: {
     port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       erroes: true
