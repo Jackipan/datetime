@@ -8,7 +8,8 @@
         <router-link to="/Captcha">Captcha</router-link> |
         <router-link to="/upload">Upload</router-link> |
         <router-link to="/chat">Chat</router-link> |
-        <router-link to="/imgCut">ImgCut</router-link>
+        <router-link to="/imgCut">图片剪裁</router-link> |
+        <router-link to="/virtual">虚拟列表</router-link>
       </div>
       <span>本机ip： {{ ip }}</span>
       <router-view />

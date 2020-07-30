@@ -47,7 +47,7 @@ export default {
   methods: {
     before() {
       console.log('action')
-      // Axios.post("http://localhost:8080/upload/", )
+      // Axios.post("http://192.168.1.226:8080/upload/", )
     },
     submitUpload() {
       this.$refs.upload.submit()

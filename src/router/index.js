@@ -42,6 +42,11 @@ Vue.use(VueRouter)
     path: '/imgCut',
     name: 'ImgCut',
     component: ()=>import('../views/ImgCut.vue')
+  },
+  {
+    path: '/virtual',
+    name: 'virtual',
+    component: ()=>import('../views/virtual.vue')
   }
 ]
 
