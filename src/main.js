@@ -13,6 +13,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import animate from 'animate.css';
 
+import './assets/icons' // icon
 import i18n from './lang'
 
 // import zh from './lang/zh-cn.json';

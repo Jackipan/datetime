@@ -13,6 +13,9 @@ body {
   overflow-x: hidden;
 }
 #app {
+  /* font-family: SourceHanSansCN-Bold; */
+  height: 100%;
+  text-align: center;
   padding-left: calc(100vw - 100%);
 }
 </style>
