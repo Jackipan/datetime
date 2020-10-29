@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .app-container {
   width: 360px;
   margin: 0 auto;

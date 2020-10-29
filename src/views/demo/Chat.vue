@@ -47,10 +47,9 @@ export default {
     initWebsocket() {
       let _this = this
       if (window.WebSocket) {
-        var serverHot = window.location.hostname
+        console.log(process.env.VUE_APP_URL);
         // let sip = '房间号'
-        var url =
-          'ws://' + serverHot + ':9091' + '/websocket/' + this.user
+        var url =process.env.VUE_APP_URL_WS + '/imserver/' + this.user
         let ws = new WebSocket(url)
         _this.ws = ws
         ws.onopen = function() {
@@ -86,7 +85,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .app-container {
   width: 360px;
   margin: 0 auto;

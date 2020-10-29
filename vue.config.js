@@ -11,10 +11,6 @@ module.exports = {
     port,
     host: '0.0.0.0',
     open: false,
-    overlay: {
-      warnings: false,
-      erroes: true,
-    },
     disableHostCheck: true,
     proxy: {
       '/': {
@@ -56,12 +52,14 @@ module.exports = {
         new UglifyjsPlugin({
           uglifyOptions: {
             compress: {
-              warnings: false,
+              // warnings: false,
               drop_console: true, // console
               drop_debugger: false,
               pure_funcs: ['console.log'], // 移除console
             },
           },
+          sourceMap: true,
+          parallel: true
         }),
       ],
     },

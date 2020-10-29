@@ -41,6 +41,18 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Compiled
+build/
+lib/
+
+# Ide
+.vs/
+.vscode/
+
+# Other demo compiled
+.flowconfig
+binding.gyp
+
 # TypeScript v1 declaration files
 typings/
 

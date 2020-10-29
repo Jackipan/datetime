@@ -7,10 +7,13 @@
         <router-link to="/Captcha">Captcha</router-link> |
         <router-link to="/upload">Upload</router-link> |
         <router-link to="/chat">Chat</router-link> |
-        <router-link to="/imgCut">图片剪裁</router-link> |
-        <router-link to="/virtual">虚拟列表</router-link>
+        <router-link to="/alumni">Alumni</router-link> |
+        <router-link to="/virtual">虚拟列表</router-link> |
+        <router-link to="/echart">map</router-link> |
+        <router-link to="/echart2">echart2</router-link> |
+        <router-link to="/tree">tree</router-link>
       </div>
-      <span>本机ip： {{ ip }}</span>
+      <span class="ip">{{net}}  本机ip： {{ ip }}</span>
       <router-view />
   </div>
 </template>
@@ -21,27 +24,33 @@ export default {
   data() {
     return {
       ip: '',
+      net: '',
+      imgUrl: ''
     }
   },
   created() {
     this.getIp()
+    this.netStatus()
+  },
+  updated() {
+    this.netStatus()
   },
   methods: {
     getIp() {
       Axios.get('getIp')
         .then((result) => {
-          console.log(this.$store.state.name)
-          console.log('result.data', result)
           this.$store.commit('mutationSetIp', result.data)
           this.ip = this.$store.state.ip
-          console.log(this.$store.state.ip)
-          console.log('getip: ', result.data)
-        })
-        .catch((err) => {
-          console.log(err)
         })
     },
-  },
+    netStatus(){
+      if (navigator.onLine) {
+        this.net = navigator.connection.effectiveType
+      } else {
+        this.net = "无网络"
+      }
+    }
+  }
 }
 </script>
 
@@ -62,11 +71,15 @@ export default {
   width: 40px;
   height: 40px;
 }
-html,
-body {
-  margin: 0;
-  padding: 0;
+.ip{
+  display: inline-block;
   width: 100%;
-  height: 100%;
+  position: relative;
+  bottom: 10px;
+  background-color: rgba(220, 220, 220, 0.38);
+  line-height: 50px;
+  color: #2c3e50;
+}
+.home{
 }
 </style>

@@ -1,17 +1,33 @@
 <template>
-  <div id="app">
+  <div id="app" ref="app" :style="{'background-image': 'url('+this.imgUrl+')'}">
     <router-view />
   </div>
 </template>
-<style>
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+<script>
+import Axios from 'axios'
+export default {
+  data() {
+    return {
+      imgUrl: ''
+    }
+  },
+  created() {
+    this.getImg()
+  },
+  methods: {
+    getImg(){
+      Axios.get('https://api.xygeng.cn/Bing/url/').then((res) => {
+        this.imgUrl = res.data.data
+        // this.$refs.app.style.background="url("+ this.imgUrl +")"
+        console.log(this.imgUrl);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+  },
 }
+</script>
+<style>
 #app {
   /* font-family: SourceHanSansCN-Bold; */
   height: 100%;
