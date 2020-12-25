@@ -2,6 +2,14 @@ const port = 11590
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin')
 
 const path = require('path')
+
+const WebpackBar = require('webpackbar')
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+const smp = new SpeedMeasurePlugin()
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+const isProduction = process.env.NODE_ENV === 'production'
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -24,9 +32,7 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
-    config.resolve.alias
-      .set('@', resolve('src'))
-      .set('assert', resolve('src/assets'))
+    config.resolve.alias.set('@', resolve('src')).set('assert', resolve('src/assets'))
 
     // set svg-sprite-loader
     config.module
@@ -46,7 +52,16 @@ module.exports = {
       .end()
   },
   // 是否打印 console 数据
-  configureWebpack: {
+  configureWebpack: smp.wrap({
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          include: path.resolve('src'),
+          use: ['thread-loader'],
+        },
+      ],
+    },
     optimization: {
       minimizer: [
         new UglifyjsPlugin({
@@ -59,15 +74,14 @@ module.exports = {
             },
           },
           sourceMap: true,
-          parallel: true
+          parallel: true,
         }),
       ],
     },
-  },
+  }),
   css: {
     loaderOptions: {
-      sass: {
-      },
+      sass: {},
     },
   },
 }

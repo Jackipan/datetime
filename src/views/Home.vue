@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-      <div id="nav">
+      <div class="nav">
         <router-link to="/home">Home</router-link> |
         <router-link to="/about">About</router-link> |
         <router-link to="/Zjxx">Orientation</router-link> |
@@ -11,9 +11,10 @@
         <router-link to="/virtual">虚拟列表</router-link> |
         <router-link to="/echart">map</router-link> |
         <router-link to="/echart2">echart2</router-link> |
+        <router-link to="/components">components</router-link> |
         <router-link to="/tree">tree</router-link>
       </div>
-      <span class="ip">{{net}}  本机ip： {{ ip }}</span>
+      <span class="ip">{{net}}  本机ip： {{ ip }} <router-link :to="{name:'STD'}">STD</router-link> </span>
       <router-view />
   </div>
 </template>
@@ -26,6 +27,13 @@ export default {
       ip: '',
       net: '',
       imgUrl: ''
+    }
+  },
+  watch: {
+    $route(){
+      setTimeout(() => {
+        console.log(this.$route);
+      }, 1000);
     }
   },
   created() {
@@ -55,16 +63,24 @@ export default {
 </script>
 
 <style>
-#nav {
+.home{
+  position: relative;
+  width: 90%;
+  height: 100%;
+  text-align: center;
+  color: #ffffff;
+  margin: 0 auto;
+}
+.nav {
   padding: 30px;
 }
 
-#nav a {
+.nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+.nav a.router-link-exact-active {
   color: #42b983;
 }
 .language {
@@ -79,7 +95,5 @@ export default {
   background-color: rgba(220, 220, 220, 0.38);
   line-height: 50px;
   color: #2c3e50;
-}
-.home{
 }
 </style>

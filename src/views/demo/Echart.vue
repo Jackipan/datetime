@@ -1,36 +1,56 @@
 <template>
-  <div id="container"></div>
+  <div ref="ele" class="ele" onscroll="test">
+    <span class="stic"> {{ ratio }}</span>
+    <div ref="text" class="text"></div>
+  </div>
 </template>
 
 <script>
-// import { MP } from '@/utils/map'
-import '@/assets/js/api.map.baidu.com.js'
 export default {
   data() {
-    return {}
-  },
-  created() {
-    // console.log('BMap', MP())
+    return {
+      ratio: '',
+    }
   },
   mounted() {
-    this.$nextTick(() => {
-      // var _this = this;
-      // 百度地图
-      // MP().then(BMap => {
-      var map = new BMap.Map('container')
-      var point = new BMap.Point(102.550963, 29.572012)
-      map.centerAndZoom(point, 12)
-      map.enableScrollWheelZoom(true)
-      var opts = {offset: new BMap.Size(150, 5)}
-      map.addControl(new BMap.ScaleControl(opts))
-      // })
-    })
+    this.test()
+  },
+  methods: {
+    io() {
+      const io =  new IntersectionObserver(
+        entries => {
+          console.log('entries: ',entries[0].intersectionRatio)
+        },
+        {
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        }
+      )
+      console.log(io);
+      return io
+    },
+    test(){
+      this.ratio = this.io().observe(this.$refs.text)
+    }
   },
 }
 </script>
 
-<style>
-#container {
-  height: 500px;
+<style lang="scss">
+.ele {
+  width: 100%;
+  height: 3000px;
+  .text {
+    width: 50px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: rgb(56, 3, 3);
+    margin-top: 600px;
+    border: 1px solid darkgoldenrod;
+  }
+  .stic{
+    color: #000;
+    position: sticky;
+    top: 200px;
+  }
 }
 </style>

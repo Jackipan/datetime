@@ -73,6 +73,11 @@ const routes = [
       {
         path: '/tree',
         component: () => import('../views/demo/Tree.vue'),
+      },{
+        path: '/components',
+        component: () => import('../views/demo/Compoments.vue')
+      },{
+        path: '*',
       }
     ],
   },

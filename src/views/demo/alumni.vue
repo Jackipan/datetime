@@ -1,8 +1,14 @@
 <template>
   <div class="app-container">
+    {{$route}}
     <el-button @click="getByName">by name</el-button>
     <div>
       <el-table :data="tabledata">
+        <el-table-column align="center" label="序号">
+          <template slot-scope="scope">{{
+            (query.page - 1) * query.pagesize + scope.$index + 1
+          }}</template>
+        </el-table-column>
         <el-table-column prop="id" label="id" width="180"> </el-table-column>
         <el-table-column prop="donate_id" label="捐献id" width="180">
         </el-table-column>
@@ -48,13 +54,13 @@ export default {
     this.getData()
   },
   methods: {
-    getByName(){
-      console.log('by name');
+    getByName() {
+      console.log('by name')
       axios
-        .get(url,{
+        .get(url, {
           params: {
-            mobile: '13503185932'
-          }
+            mobile: '13503185932',
+          },
         })
         .then((res) => {
           console.log(res.data.data)
@@ -67,8 +73,8 @@ export default {
     },
     getData() {
       axios
-        .get(url,{
-          params: this.query
+        .get(url, {
+          params: this.query,
         })
         .then((res) => {
           console.log(res.data.data)

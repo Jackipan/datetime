@@ -17,27 +17,27 @@ import animate from 'animate.css'
 
 import './assets/icons' // icon
 import './assets/style/org-tree.less'
-import './assets/style/index.scss';
+import './assets/style/user-card.scss'
+import './assets/style/index.scss'
 import i18n from './lang'
+
+import './assets/js/three.min'
 
 // 侧睡 tree-shaking
 import { cube } from './math.js'
 
-import { getPerformanceTiming } from './utils/performance';
+import { getPerformanceTiming } from './utils/performance'
 
-var component  = ()=> {
+var component = () => {
   var element = document.createElement('pre')
 
-  element.innerHTML = ['Hello webpack!', '5 cubed is equal to ' + cube(5)].join(
-    '\n\n'
-  )
+  element.innerHTML = ['Hello webpack!', '5 cubed is equal to ' + cube(5)].join('\n\n')
 
-  console.log(element);
+  console.log(element)
   return element
 }
-console.log(document.getElementById('app'));
+console.log(document.getElementById('app'))
 document.getElementById('app').appendChild(component())
-
 
 // import zh from './lang/zh-cn.json';
 // import en from './lang/en.json';
@@ -66,11 +66,15 @@ Vue.use(getPerformanceTiming)
 export var bus = new Vue()
 
 Vue.config.productionTip = false
-
+Vue.config.performance = true
 
 new Vue({
   router,
   store,
   i18n,
-  render: (h) => h(App),
+  render: (h) =>  {
+    console.log(h);
+    console.log('app', App);
+    return h(App)
+  },
 }).$mount('#app')
